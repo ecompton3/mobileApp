@@ -47,12 +47,12 @@ public class ItemDBHelper extends SQLiteOpenHelper{
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_ITEMS + "("
+        String CREATE_ITEMS_TABLE = "CREATE TABLE " + TABLE_ITEMS + "("
                 + KEY_NAME + " TEXT PRIMARY KEY,"
                 + KEY_USER + " TEXT," + KEY_DESC + " TEXT," + KEY_CITY + " TEXT," + KEY_STATE + " TEXT," + 
                 KEY_REWARD + " INTEGER," + KEY_MONTH + " INTEGER," + KEY_DAY + " INTEGER," + KEY_YEAR + " INTEGER," + 
                 KEY_CAT + " TEXT," + KEY_STATUS + " INTEGER" + KEY_TYPE + " TEXT" + ")";
-        db.execSQL(CREATE_CONTACTS_TABLE);
+        db.execSQL(CREATE_ITEMS_TABLE);
     }
  
     // Upgrading database
@@ -122,7 +122,7 @@ public class ItemDBHelper extends SQLiteOpenHelper{
      
     // Getting All Contacts
     public List<Item> getAllItems() {
-    	List<Item> accountList = new ArrayList<Item>();
+    	List<Item> itemList = new ArrayList<Item>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_ITEMS;
      
@@ -143,12 +143,43 @@ public class ItemDBHelper extends SQLiteOpenHelper{
                
                
                 // Adding contact to list
-                accountList.add(item);
+                itemList.add(item);
             } while (cursor.moveToNext());
         }
      
         // return contact list
-        return accountList;
+        return itemList;
+    }
+    
+ // Getting All Contacts
+    public List<Item> getUserItems(String owner) {
+    	List<Item> itemList = new ArrayList<Item>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_ITEMS + " WHERE " + KEY_USER + " = '" + owner + "'";
+     
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+     
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Item item = new Item(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(9),cursor.getString(3),
+                		cursor.getString(4),cursor.getInt(5),cursor.getInt(6),cursor.getInt(7),cursor.getInt(8));
+                item.setType(cursor.getString(11));
+                if(cursor.getInt(10) == 1) {
+                	 item.setStatus(true);
+                } else {
+                	 item.setStatus(false);
+                }
+               
+               
+                // Adding contact to list
+                itemList.add(item);
+            } while (cursor.moveToNext());
+        }
+     
+        // return contact list
+        return itemList;
     }
      
     // Getting contacts Count
@@ -188,7 +219,7 @@ public class ItemDBHelper extends SQLiteOpenHelper{
     }
      
     // Deleting single contact
-    public void deleteContact(Item item) {
+    public void deleteItem(Item item) {
     	SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_ITEMS, KEY_NAME + " = ?",
                 new String[] { String.valueOf(item.getName()) });

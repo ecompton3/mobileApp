@@ -10,6 +10,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -276,8 +277,10 @@ public class LoginActivity extends Activity {
 				toCheck.setLoginAttempts(0);
 				dbHelper.updateAccount(toCheck);
 				Intent myIntent = new Intent(LoginActivity.this, HomeActivity.class);
-				LoginActivity.this.startActivity(myIntent);
+				
+				Log.w("users",toCheck.getUsername());
 				myIntent.putExtra("user", toCheck.getUsername());
+				LoginActivity.this.startActivity(myIntent);
 			} else if(state.equals("failure")) {
 				mPasswordView
 						.setError(getString(R.string.error_incorrect_password));

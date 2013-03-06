@@ -27,6 +27,14 @@
             android:name="com.example.wheresmystuff.HomeActivity"
             android:label="@string/title_activity_home" >
         </activity>
+        <activity
+            android:name="com.example.wheresmystuff.AddItemActivity"
+            android:label="@string/title_activity_add_item"
+            android:parentActivityName="com.example.wheresmystuff.HomeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.wheresmystuff.HomeActivity" />
+        </activity>
     </application>
 
 </manifest>

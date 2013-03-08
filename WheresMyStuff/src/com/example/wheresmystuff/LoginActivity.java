@@ -113,7 +113,7 @@ public class LoginActivity extends Activity {
 		builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
 		               // User clicked OK button
-		        	   credentials.addAccount(new Account(mEmail,mPassword));
+		        	   
 		        	   dbHelper.addAccount(new Account(mEmail,mPassword));
 		           }
 		       });

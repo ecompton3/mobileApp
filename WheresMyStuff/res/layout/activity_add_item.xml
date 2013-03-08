@@ -29,55 +29,28 @@
 
             <EditText
                 android:id="@+id/itemName"
+                android:layout_width="match_parent"
                 android:layout_column="0"
                 android:layout_gravity="right|top"
                 android:layout_row="2"
                 android:ems="10"
+                android:hint="Name"
                 android:inputType="text" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_column="0"
-                android:layout_gravity="left|center_vertical"
-                android:layout_row="2"
-                android:text="Name"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
                 android:id="@+id/itemDesc"
-                android:layout_width="176dp"
+                 android:hint="Description"
+                android:layout_width="match_parent"
                 android:layout_column="0"
                 android:layout_gravity="right|top"
                 android:layout_row="3"
                 android:ems="10"
                 android:inputType="textMultiLine" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_column="0"
-                android:layout_gravity="left|center_vertical"
-                android:layout_row="3"
-                android:text="Description"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_column="0"
-                android:layout_gravity="left|center_vertical"
-                android:layout_row="4"
-                android:text="City"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_column="0"
-                android:layout_gravity="left|center_vertical"
-                android:layout_row="5"
-                android:text="State"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
             <EditText
                 android:id="@+id/itemState"
+                 android:hint="State"
+                android:layout_width="match_parent"
                 android:layout_column="0"
                 android:layout_gravity="right|top"
                 android:layout_row="5"
@@ -85,6 +58,8 @@
 
             <EditText
                 android:id="@+id/itemCity"
+                 android:hint="City"
+                android:layout_width="match_parent"
                 android:layout_column="0"
                 android:layout_gravity="right|top"
                 android:layout_row="4"
@@ -92,19 +67,13 @@
 
             <EditText
                 android:id="@+id/itemReward"
+                android:layout_width="match_parent"
                 android:layout_column="0"
                 android:layout_gravity="right|top"
                 android:layout_row="6"
                 android:ems="10"
+                android:hint="Reward"
                 android:inputType="number" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_column="0"
-                android:layout_gravity="left|center_vertical"
-                android:layout_row="6"
-                android:text="Reward"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -118,7 +87,7 @@
                 android:id="@+id/textView8"
                 android:layout_column="0"
                 android:layout_gravity="left|top"
-                android:layout_row="8"
+                android:layout_row="9"
                 android:text="Category"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -126,7 +95,7 @@
                 android:id="@+id/textView9"
                 android:layout_column="0"
                 android:layout_gravity="left|top"
-                android:layout_row="10"
+                android:layout_row="11"
                 android:text="Type"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -148,14 +117,14 @@
                 android:id="@+id/datePickerItem"
                 android:layout_column="0"
                 android:layout_gravity="center_horizontal|top"
-                android:layout_row="7"
+                android:layout_row="8"
                 android:calendarViewShown="false" />
 
             <RadioGroup
                 android:id="@+id/radioGroupCat"
                 android:layout_column="0"
                 android:layout_gravity="left|top"
-                android:layout_row="9" >
+                android:layout_row="10" >
 
                 <RadioButton
                     android:id="@+id/radioAnt"
@@ -163,31 +132,30 @@
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:text="Antique" />
-            </RadioGroup>
 
-            <RadioButton
+                <RadioButton
+                    android:id="@+id/radioMisc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Misc" />
+
+                 <RadioButton
                 android:id="@+id/radioPersonal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:layout_gravity="center_horizontal|top"
-                android:layout_row="9"
+                android:layout_row="10"
                 android:text="Personal" />
+            </RadioGroup>
 
-            <RadioButton
-                android:id="@+id/radioMisc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_gravity="right|top"
-                android:layout_row="9"
-                android:text="Misc" />
+           
 
             <RadioGroup
                 android:id="@+id/radioGroupType"
                 android:layout_column="0"
                 android:layout_gravity="left|top"
-                android:layout_row="11" >
+                android:layout_row="12" >
 
                 <RadioButton
                     android:id="@+id/radioLost"
@@ -195,16 +163,17 @@
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:text="Lost" />
-            </RadioGroup>
-
-            <RadioButton
+                <RadioButton
                 android:id="@+id/radioFound"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:layout_gravity="right|top"
-                android:layout_row="11"
+                android:layout_row="12"
                 android:text="Found" />
+            </RadioGroup>
+
+            
         </GridLayout>
 
     </ScrollView>

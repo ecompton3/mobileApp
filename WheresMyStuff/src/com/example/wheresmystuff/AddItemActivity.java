@@ -9,6 +9,7 @@ import com.example.wheresmystuff.models.LostItem;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,11 +59,78 @@ public class AddItemActivity extends Activity {
 	}
 	
 	private void addItem() {
-		name   = ((EditText)findViewById(R.id.itemName)).getText().toString();
-		desc   = ((EditText)findViewById(R.id.itemDesc)).getText().toString();
-		city   = ((EditText)findViewById(R.id.itemCity)).getText().toString();
-		state   = ((EditText)findViewById(R.id.itemState)).getText().toString();
-		reward = Integer.parseInt(((EditText)findViewById(R.id.itemReward)).getText().toString());
+		EditText mName = (EditText)findViewById(R.id.itemName);
+		EditText mDesc = (EditText)findViewById(R.id.itemDesc);
+		EditText mCity = (EditText)findViewById(R.id.itemCity);
+		EditText mState = (EditText)findViewById(R.id.itemState);
+		EditText mReward = (EditText)findViewById(R.id.itemReward);
+		
+		// Reset errors.
+				mName.setError(null);
+				mDesc.setError(null);
+				mCity.setError(null);
+				mState.setError(null);
+				mReward.setError(null);
+				
+
+				// Store values at the time of the login attempt.
+		
+		
+		name   = mName.getText().toString();
+		desc   = mDesc.getText().toString();
+		city   = mCity.getText().toString();
+		state   = mState.getText().toString();
+		String rewardString = mReward.getText().toString();
+		
+		boolean cancel = false;
+		View focusView = null;
+
+		// Check for a valid password.
+		if (TextUtils.isEmpty(name)) {
+			mName.setError(getString(R.string.error_field_required));
+			focusView = mName;
+			cancel = true;
+		} else if(db.getItem(name) == null) {
+			mName.setError("Name Already Exists");
+			focusView = mName;
+			cancel = true;
+		}
+		
+		if (TextUtils.isEmpty(desc)) {
+			mDesc.setError(getString(R.string.error_field_required));
+			focusView = mDesc;
+			cancel = true;
+		}
+		
+		if (TextUtils.isEmpty(city)) {
+			mCity.setError(getString(R.string.error_field_required));
+			focusView = mCity;
+			cancel = true;
+		}
+		
+		if (TextUtils.isEmpty(state)) {
+			mState.setError(getString(R.string.error_field_required));
+			focusView = mState;
+			cancel = true;
+		} else if(state.length() > 2) {
+			
+				mState.setError("Max Two Characters");
+				focusView = mState;
+				cancel = true;
+			
+		}
+		
+		if (TextUtils.isEmpty(rewardString)) {
+			mReward.setError(getString(R.string.error_field_required));
+			focusView = mReward;
+			cancel = true;
+		}
+		
+		if(cancel) {
+			return;
+		}
+		
+		reward = Integer.parseInt(rewardString);
 		day = ((DatePicker)findViewById(R.id.datePickerItem)).getDayOfMonth();
 		month = ((DatePicker)findViewById(R.id.datePickerItem)).getMonth();
 		year = ((DatePicker)findViewById(R.id.datePickerItem)).getYear();
